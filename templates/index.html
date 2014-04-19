@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>我的名片</title>
+    <link rel="stylesheet" type="text/css" href="/media/css/home.css"/>
+    <script type="text/javascript" src="/media/js/Config.js"></script>
+    <script type="text/javascript" src="/media/js/lib/jquery-1.9.1.js"></script>
+    <script type="text/javascript" src="/media/js/app.js"></script>
+
+    <script type="text/javascript">
+        //页面加载数据
+        $(function(){
+            var $picList = $("#pic_list");
+            var $footer = $("#footer");
+            var photoDfd = sendRequest("getPhotoWall");
+            photoDfd.done(function(resp){
+                $.each(resp, function(index, item){
+                    $picList.find("#pic_" + (index+1)).attr("src", item.fields.url);
+                })
+            });
+            var profileDfd = sendSingleObjRequest("getProfileBrief");
+            profileDfd.done(function(resp){
+                $footer.find("h3").text(resp.name);
+                if(resp.mark){
+                    $footer.find("h4").text(resp.mark);
+                }else{
+                    $footer.find("h4").text(Config.No_info);
+                }
+                if(resp.short_desc){
+                    $footer.find("p#desc").text(resp.short_desc);
+                }else{
+                    $footer.find("p#desc").text(Config.No_info);
+                }
+            });
+
+        });
+        //页面动画效果
+        $(function(){
+            $("#title_logo").addClass("current");
+        });
+        //绑定事件
+        $(function(){
+            $("#title_profile").bind("click", function(){
+                //TODO 发送请求，跳往profile页面
+                window.location.href = "profile";
+            });
+            $("#link").bind("click", function(){
+                $.ajax({
+                    url: "http://pv.sohu.com/cityjson",
+                    dataType: "jsonp",
+                    jsonp: "callbackparam",
+                    jsonpCallback: "getIP",
+                    complete: function(data, resp){
+                        console.log(resp);
+                    },
+                    getIP: function(data){
+                        alert("2222");
+                    }
+                });
+            });
+        });
+    </script>
+</head>
+<body>
+    <div id="header">
+        <h1>Lin's Virtual Card</h1>
+        <h2>-------------------a card for my beauty-------------------</h2>
+    </div>
+    <div id="content">
+        <div id="title">
+            <div class="card_title" id="title_logo">
+                <div class="logo_img"></div>
+            </div>
+            <div class="card_title" id="title_profile">
+                <div class="logo_img"></div>
+            </div>
+            <div class="card_title" id="title_game">
+                <div class="logo_img"></div>
+            </div>
+            <div class="card_title" id="title_show">
+                <div class="logo_img"></div>
+            </div>
+            <div class="card_title" id="title_contact">
+                <div class="logo_img"></div>
+            </div>
+        </div>
+        <div id="main_content">
+            <div id="home">
+                <ul id="pic_list">
+                    <li class="pic_li">
+                        <img id="pic_1" src="">
+                    </li>
+                    <li class="pic_li">
+                        <img id="pic_2" src="">
+                    </li>
+                    <li class="pic_li">
+                        <img id="pic_3" src="">
+                    </li>
+                    <li class="pic_li">
+                        <img id="pic_4" src="">
+                    </li>
+                </ul>
+            </div>
+            <div id="footer">
+                <article>
+                    <h3></h3>
+                    <h4></h4>
+                    <p id="desc"></p>
+                    <div id="link">给我点个赞吧</div>
+                </article>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

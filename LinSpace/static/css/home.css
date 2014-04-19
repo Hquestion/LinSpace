@@ -1,0 +1,231 @@
+body{
+    margin: 0;
+    padding: 0;
+    background: #fa4a7a;
+    font-family: "Arial","微软雅黑","仿宋","宋体";
+}
+
+div,h1,h2,h3,h4,h5,h6,ul,li,img{
+    margin: 0;
+    padding: 0;
+}
+
+div#header {
+    margin: 0 auto;
+    margin-top: 50px;
+    width: 800px;
+    height: 100px;
+    font-family: "Times New Roman";
+}
+
+#header h1{
+    text-align: center;
+    color: #a3a363;
+}
+
+#header h2{
+    text-align: center;
+    color: #d4d4df;
+}
+
+#content{
+    margin: 0 auto;
+    width: 1000px;
+    height: 900px;
+    /*background: #6adaba;*/
+    background: #fff;
+    margin-bottom: 30px;
+}
+
+#content #title{
+    width: 1000px;
+    height: 200px;
+    background: #fa4a7a;
+    z-index: 10;
+}
+
+#content #title .card_title{
+    margin-top: 20px;
+    float: left;
+    width: 200px;
+    height: 180px;
+    text-align: center;
+}
+
+#content #title .card_title .logo_img{
+    width: 82px;
+    height: 80px;
+    margin-left: 58px;
+    vertical-align: middle;
+    margin-top: 50px;
+}
+
+#content #title #title_logo{
+    background: #27ae60;
+}
+
+#content #title #title_logo:hover{
+    background: #fff;
+}
+
+#title_logo .logo_img{
+    background: url("../img/icon.png") -307px -132px;
+}
+
+#content #title #title_profile{
+    background: #2ecc71;
+}
+
+#content #title #title_profile:hover{
+    background: #fff;
+}
+
+#title_profile .logo_img{
+    background: url("../img/icon.png") -619px -756px;
+}
+
+#content #title #title_game{
+    background: #27ae60;
+}
+
+#content #title #title_game:hover{
+    background: #fff;
+}
+
+#title_game .logo_img{
+    background: url("../img/icon.png") -307px -1068px;
+}
+
+#content #title #title_show{
+    background: #2ecc71;
+}
+
+#content #title #title_show:hover{
+    background: #fff;
+}
+
+#title_show .logo_img{
+    background: url("../img/icon.png") -203px -756px;
+}
+
+#content #title #title_contact{
+    background: #27ae60;
+}
+
+#content #title #title_contact:hover{
+    background: #fff;
+}
+
+#title_contact .logo_img{
+    background: url("../img/icon.png") -307px -860px;
+}
+
+#content #title .card_title.current{
+    margin-top: 0;
+    height: 200px;
+    transition: all .8s ease .1s;
+    cursor: pointer;
+}
+
+#content #title .card_title:hover{
+    margin-top: 0;
+    height: 200px;
+    transition: all .8s ease .1s;
+    cursor: pointer;
+}
+
+
+#content #title .card_title:hover .logo_img{
+    cursor: pointer;
+    -webkit-transform: rotate(360deg);
+    transform: rotate(360deg);
+    -webkit-transform-origin: 50% 50%;
+    transform-origin: 50% 50%;
+    transition: all 5s ease 0.3s;
+    -webkit-transition: all 1s ease 0.1s;
+}
+
+#content #home{
+    width: 1000px;
+    height: 400px;
+}
+
+#content #home ul{
+    list-style: none;
+    width: 1000px;
+    height: 400px;
+}
+
+#content #home ul li{
+    display: inline-block;
+    width: 25%;
+    height: 400px;
+    float: left;
+    background: #fa4a7a;
+}
+
+#content #home ul li img{
+    width: 100%;
+    height: 400px;
+}
+
+#content #footer{
+    margin-top: 30px;
+    margin-left: 20px;
+    height: 250px;
+    width: 960px;
+}
+
+#content #footer article{
+    width: 960px;
+    height: 250px;
+    overflow: hidden;
+}
+
+#content #footer h3{
+    height: 40px;
+    line-height: 40px;
+    color: #fa4a7a;
+    font-size: 20px;
+    font-weight: 500;
+    text-shadow: 1px 1px 2px #a3a363,-1px -1px 2px #a3a363;
+}
+
+#content #footer h4{
+    height: 20px;
+    line-height: 20px;
+    color: #fa4a7a;
+    font-size: 14px;
+    font-family: "宋体";
+    font-weight: 600;
+}
+
+#content #footer p#desc{
+    margin-top: 20px;
+    width: 960px;
+    line-height: 20px;
+    min-height: 40px;
+    max-height: 100px;
+    overflow-y: auto;
+}
+
+#content #footer div#link{
+    width: 120px;
+    height: 40px;
+    line-height: 40px;
+    background: #fa4a7a;
+    border: 1px solid #ff2a4a;
+    text-align: center;
+    cursor: pointer;
+    color: #fff;
+}
+
+#content #footer div#link:hover{
+    background: #fa2a6a;
+}
+
+#content #footer *::selection{
+    background: #fa4a7a;
+    color: #000;
+}
+

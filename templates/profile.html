@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>我的名片</title>
+    <link rel="stylesheet" type="text/css" href="/media/css/profile.css"/>
+    <link rel="stylesheet" type="text/css" href="/media/css/HPlayer.css"/>
+    <script type="text/javascript" src="/media/js/Config.js"></script>
+    <script type="text/javascript" src="/media/js/lib/jquery-1.9.1.js"></script>
+    <script type="text/javascript" src="/media/js/app.js"></script>
+    <script type="text/javascript" src="/media/js/lib/HPlayer.js"></script>
+    <script type="text/javascript">
+        //页面加载数据
+        $(function(){
+            var headPic$ = $("#head_pic").find("img");
+            var profileDfd = sendSingleObjRequest("getProfileBrief");
+            profileDfd.done(function(resp){
+                console.log(resp);
+                if(resp.head_pic){
+                    headPic$.attr("src", "/media" + resp.head_pic);
+                }else{
+                    headPic$.attr("src", "/media" + Config.defaultHeadPic);
+                }
+                $("#name .valueText").text(resp.name || "");
+                $("#sex .valueText").text(resp.sex === 0 ? "女" : "男");
+                $("#age .valueText").text(resp.age || "待填写");
+                $("#star .valueText").text(resp.star || "待填写");
+                $("#blood .valueText").text(resp.blood || "待填写");
+                $("#label .valueText").text(resp.label || "待填写");
+                $("#qq .valueText").text(resp.qq_number || "待填写");
+                $("#phone .valueText").text(resp.telephone || "待填写");
+                $("#email .valueText").text(resp.email || "待填写");
+                $("#address .valueText").text(resp.address || "待填写");
+                $("#intro .valueText").text(resp.short_desc || "待填写");
+                $("#interest .valueText").text(resp.interest || "待填写");
+            });
+
+            //初始化播放器
+            var player = new HPlayer("video/mp4", $("#left_video"));
+            player._initHPlayer({
+                width: 380,
+                preload: "auto",
+                autoplay: false,
+                volume: 0.5,
+                poster: "/media/pic/1.jpg"
+            },"/media/video/basket.mp4");
+
+            //获取天气
+            sendRequest("/card/getWeather").done(function(data){
+                console.log(data.weatherinfo);
+                var weatherInfo = data.weatherinfo;
+                var weatherText = "";
+                var tempText = "";
+                if(weatherInfo){
+                    if(weatherInfo.weather){
+                        var weatherStr = weatherInfo.weather.toString();
+                        if(weatherStr.indexOf("雨") != -1 && weatherStr.indexOf("雪") != -1){
+                             weatherText = "南京今天雨夹雪哎，出门记得带雨伞，多穿点衣服，没事就在家呆着吧。";
+                        }else if(weatherStr.indexOf("雨") != -1){
+                            weatherText = "南京今天会下雨哦，出门记得带雨伞哦。";
+                        }else if(weatherStr.indexOf("雪") != -1){
+                            weatherText = "南京今天会下雪哦，出门记得带雨伞，注意保暖咩。";
+                        }else if(parseInt(weatherInfo.temp2) >= 28 || parseInt(weatherInfo.temp1) >= 28){
+                            weatherText = "南京今天温度很高呢，出门要做好防晒工作哦。";
+                        }else{
+                            weatherText = "南京今天天气不错哦，出门溜达溜达吧。";
+                        }
+                    }
+                    if(weatherInfo.temp1 && weatherInfo.temp2){
+                        tempText = "气温： " + weatherInfo.temp1 + " ~ " + weatherInfo.temp2;
+                    }
+                    $("#tip").text(weatherText);
+                    $("#temp").text(tempText);
+                    $("#sky").text("天气： " + weatherInfo.weather);
+                }
+            })
+        });
+        //页面动画效果
+        $(function(){
+            $("#title_profile").addClass("current");
+        });
+        //绑定事件
+        $(function(){
+            $("#title_logo").bind("click", function(){
+                //TODO 发送请求，跳往profile页面
+                window.location.href = "/card";
+            })
+        });
+    </script>
+</head>
+<body>
+    <div id="header">
+        <h1>Lin's Virtual Card</h1>
+        <h2>-------------------a card for my beauty-------------------</h2>
+    </div>
+    <div id="content">
+        <div id="title">
+            <div class="card_title" id="title_logo">
+                <div class="logo_img"></div>
+            </div>
+            <div class="card_title" id="title_profile">
+                <div class="logo_img"></div>
+            </div>
+            <div class="card_title" id="title_game">
+                <div class="logo_img"></div>
+            </div>
+            <div class="card_title" id="title_show">
+                <div class="logo_img"></div>
+            </div>
+            <div class="card_title" id="title_contact">
+                <div class="logo_img"></div>
+            </div>
+        </div>
+        <div id="main_content">
+            <div id="head_pic">
+                <div><img src=""/></div>
+                <div id="weather">
+                    <div id="tip"></div>
+                    <div id="temp"></div>
+                    <div id="sky"></div>
+                </div>
+            </div>
+            <aside id="left_video">
+                <h3 id="video_title">秀出一片天</h3>
+            </aside>
+            <article id="right_detail">
+                <h2 class="detail_title">我的详细资料</h2>
+                <div id="detail">
+                    <ul>
+                        <li id="name">
+                            <span class="label">姓名</span>
+                            <span> : </span>
+                            <span class="valueText"></span>
+                        </li>
+                        <li id="sex">
+                            <span class="label">性别</span>
+                            <span> : </span>
+                            <span class="valueText"></span>
+                        </li>
+                        <li id="age">
+                            <span class="label">年龄</span>
+                            <span> : </span>
+                            <span class="valueText"></span>
+                        </li>
+                        <li id="star">
+                            <span class="label">星座</span>
+                            <span> : </span>
+                            <span class="valueText"></span>
+                        </li>
+                        <li id="blood">
+                            <span class="label">血型</span>
+                            <span> : </span>
+                            <span class="valueText"></span>
+                        </li>
+                        <li id="label">
+                            <span class="label">我的标签</span>
+                            <span> : </span>
+                            <span class="valueText"></span>
+                        </li>
+                        <li id="interest">
+                            <span class="label">我的最爱</span>
+                            <span> : </span>
+                            <span class="valueText"></span>
+                        </li>
+                        <li id="email">
+                            <span class="label">电子邮箱</span>
+                            <span> : </span>
+                            <span class="valueText"></span>
+                        </li>
+                        <li id="qq">
+                            <span class="label">QQ</span>
+                            <span> : </span>
+                            <span class="valueText"></span>
+                        </li>
+                        <li id="phone">
+                            <span class="label">手机号码</span>
+                            <span> : </span>
+                            <span class="valueText"></span>
+                        </li>
+                        <li id="address">
+                            <span class="label">联系地址</span>
+                            <span> : </span>
+                            <span class="valueText"></span>
+                        </li>
+                        <li id="intro">
+                            <span class="label">自我描述</span>
+                            <span> : </span>
+                            <span class="valueText"></span>
+                        </li>
+                    </ul>
+                </div>
+                <label></label>
+            </article>
+        </div>
+    </div>
+</body>
+</html>

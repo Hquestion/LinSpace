@@ -1,0 +1,119 @@
+@import "./home.css";
+
+#head_pic{
+    width: 430px;
+    height: 290px;
+}
+
+#head_pic div{
+    float: left;
+}
+
+#head_pic img{
+    margin-top: 30px;
+    margin-left: 30px;
+    width: 200px;
+    height: 240px;
+}
+
+#head_pic #weather{
+    position: relative;
+    float: right;
+    width: 160px;
+    height: 220px;
+    top: 50px;
+    right: 20px;
+    color: #fa3a5a;
+    line-height: 20px;
+}
+
+#head_pic #weather div{
+    margin-top: 15px;
+    width: 160px;
+    height: auto;
+}
+
+#head_pic #weather div#tip{
+    padding: 10px;
+    width: 140px;
+    background: #ffdf2a;
+}
+
+#left_video{
+    float: left;
+    margin-left: 20px;
+    height: 400px;
+    width: 410px;
+    border-top: 2px solid #fa4a7a;
+}
+
+#left_video video{
+    width: 380px;
+    height: 300px;
+}
+
+#left_video #video_title{
+   width: 100%;
+    height: 50px;
+    line-height: 50px;
+    color: #fa3a5a;
+    padding-left: 10px;
+}
+
+#right_detail{
+    float: right;
+    margin-top: -260px;
+    height: 650px;
+    width: 568px;
+    border-left: 2px solid #fa4a7a;
+}
+
+#right_detail h2.detail_title{
+    position: relative;
+    margin-top: 20px;
+    margin-left: 30px;
+    width: 200px;
+    height: 40px;
+    padding-left: 20px;
+    line-height: 40px;
+    color: #fa4a7a;
+    font-weight: 600;
+    font-size: 24px;
+}
+
+#right_detail #detail{
+    position: relative;
+    width: 450px;
+    height: 500px;
+    margin-top: 20px;
+    margin-left: 30px;
+    padding-left: 30px;
+}
+
+#detail ul{
+    display: inline-block;
+    list-style: none;
+    font-size: 16px;
+    color: #fa4a7a;
+}
+
+#detail ul li{
+    display: inline-block;
+    width: 400px;
+    min-height: 40px;
+    line-height: 20px;
+}
+
+#detail ul li span.label{
+    display: inline-block;
+    width: 80px;
+    height: 40px;
+    text-align: right;
+}
+
+#detail ul li span.valueText{
+    display: inline-block;
+    width: 300px;
+    min-height: 40px;
+    text-align: left;
+}
