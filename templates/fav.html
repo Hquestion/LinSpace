@@ -76,7 +76,7 @@
         });
         //页面动画效果
         $(function(){
-            $("#title_profile").addClass("current");
+            $("#title_game").addClass("current");
         });
         //绑定事件
         $(function(){
@@ -84,9 +84,9 @@
                 //TODO 发送请求，跳往profile页面
                 window.location.href = "/card";
             });
-            $("#title_game").bind("click", function(){
-                //TODO 发送请求，跳往game页面
-                window.location.href = "fav";
+            $("#title_profile").bind("click", function(){
+                //TODO 发送请求，跳往profile页面
+                window.location.href = "profile";
             });
         });
     </script>

@@ -31,10 +31,15 @@ def getProfileBrief(request):
     jsonData = profile.toJSON()
     return HttpResponse(jsonData)
 
+
 def getWeather(request):
     url = "http://www.weather.com.cn:80/data/cityinfo/101190101.html"
     req = urllib2.Request(url)
     res_data = urllib2.urlopen(req)
     res = res_data.read()
     return HttpResponse(res)
+
+
+def fav(request):
+    return render_to_response("fav.html", {})
 

@@ -44,6 +44,10 @@
                 //TODO 发送请求，跳往profile页面
                 window.location.href = "profile";
             });
+            $("#title_game").bind("click", function(){
+                //TODO 发送请求，跳往game页面
+                window.location.href = "fav";
+            });
             $("#link").bind("click", function(){
                 $.ajax({
                     url: "http://pv.sohu.com/cityjson",

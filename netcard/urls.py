@@ -12,4 +12,5 @@ urlpatterns = patterns('',
         (r'getProfileBrief/$', views.getProfileBrief),
         (r'profile/$', views.profile),
         (r'getWeather/$', views.getWeather),
+        (r'fav/$', views.fav),
 )
