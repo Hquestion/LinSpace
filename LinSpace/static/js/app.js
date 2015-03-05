@@ -21,7 +21,13 @@ function sendSingleObjRequest(url, req){
         url: url,
         req: req
     }).done(function(resp){
-        dfd.resolve(JSON.parse(resp));
+        try{
+            var result = JSON.parse(resp);
+            dfd.resolve(result);
+        }catch(e){
+            console.log(e);
+            dfd.reject();
+        }
     }).fail(function(resp){
         dfd.resolve(JSON.parse(resp));
     });
